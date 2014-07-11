@@ -7,7 +7,7 @@
     <meta name="description" content="Find or promote your next 5k, 10k, half-marathon, or marathon and get running." />
     <meta name="author" content="John Polacek" />
     <meta name="viewport" content="width=device-width">
-    
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/bigvideo.css">
     
@@ -16,18 +16,28 @@
 <body>
     <div class="container">
         <div class="nav box">
+                
             <ul class="video-list">
-                <li><a href="mov/fsport.mp4" class="playlist-btn">Video #1</a></li>
-                <li><a href="mov/honored.mp4" class="playlist-btn">Video #2</a></li>
-                <li><a href="mov/tribute.mp4" class="playlist-btn">Video #3</a></li>
+                <li><a id="returnHome" href="img/background.jpg" class="playlist-btn homeButton" title="Home"><img src="img/homeButton.png" alt="Home" /></a></li>
+                <li class="playLabel">Play List</li>
+                <li><a href="mov/fsport.mp4" class="btn playlist-btn">A Video About Running Good</a></li>
+                <li><a href="mov/honored.mp4" class="btn playlist-btn">Eat Like a Runner</a></li>
+                <li><a href="mov/tribute.mp4" class="btn playlist-btn">Welcome</a></li>
             </ul>
         </div>
         <div class="main">
             <div id="overview" class="box">
-                <h1>In<span class="dimmed">S</span>tryd</h1>
-                <h2>Fullscreen Background Video Website With Playlist Example</h2>
-                <p>Take a look at the source for this example to see how to implement a BigVideo.js playlist on a website. In addition to the normal functionality of BigVideo.js, I&rsquo;ve added an auto-hide script to this example, so the content fades out away when you stop moving the mouse (unless you are over the playlist nav). Take a look and feel free to implement that if it makes sense.</p>
-                <p>Keep in mind, you may have to adjust the styles in the bigvideo.css file to get this working right in your design. Making the site work for both desktop and mobile browsers is pretty tricky as well. Use Modernizr&rsquo;s touch feature detection to set up rules for how BigVideo behaves for touchscreen devices that likely do not allow autoplay.</p>
+                <img class="logo" src="img/logo.png" alt="InStryd" />
+                
+                <h2>Bringing Runners and Race Organizers Together for Hugs and Endorphines</h2>
+                <p>Lorem Ipsum, our state of the art world class synergistic app makes running more social and promoting great events super easy and not in the least bit stressful. Our team of athletic programmers and industry specialists are working hard to deliver our new app to our dedicated partners and users. But while we're working on that we wanted to show you what we're about and what you can look forward to.</p>
+                <p>To that end you can check in with our team on a regular basis by signing up for email notifications or by visiting this site as we continue to chronical our journey in visually stunning and entertaining video blogs. Subscribers and viewers will be the first to know about and have the opportunity to sign up for our new service when it's available.</p>
+                <h3>Get Notified</h3>
+                <form>
+                    <input type="text" class="form-control" name="signupName" placeholder="Full Name" />
+                    <input type="text" class="form-control" name="signupEmail" placeholder="Email@Address.com" />
+                    <input type="submit" class="circle submitButton" value="Be The First To Know" />
+                </form>
             </div>
         </div>
     </div>
@@ -62,52 +72,75 @@
             var BV = new $.BigVideo({forceAutoplay:isTouch});
             BV.init();
             // show background image
-            BV.show('img/background-dock.jpg');
+            BV.show('img/background.jpg');
+
+            
+
+            // Turn off autohiding when mouse is over the nav 
+            // (not necessary for touchscreens)
+            if (isTouch) 
+            {
+            /*    $('.nav')
+                    .on('mouseover', function() {
+                        if (isShowingPlaylist) autoHide(false);
+                    })
+                    .on('mouseleave', function() {
+                        if (isShowingPlaylist) autoHide(true);
+                    });
+            } else {*/
+                // add button to show content on touchscreen
+                $('body').prepend($showContentButton);
+            }
 
             // Playlist button click starts video, enables autohiding
             $('.playlist-btn').on('click', function(e) {
                 e.preventDefault();
                 BV.show($(this).attr('href'), {ambient: false, controls: true});
-                autoHide(true);
+                if(!$(this).hasClass('homeButton')){
+                    autoHide(true);
+                    hideHome(true);
+                }
+                else{
+                    autoHide(false);    
+                    hideHome(false);
+                }
+                
                 isShowingPlaylist = true;
             })
 
-            // Turn off autohiding when mouse is over the nav 
-            // (not necessary for touchscreens)
-            if (!isTouch) {
-                $('.nav')
-                    .on('mouseover', function() {
-                        if (isShowingPlaylist) autoHide(false);
-                    })
-                    .on('mouseout', function() {
-                        if (isShowingPlaylist) autoHide(true);
-                    });
-            } else {
-                // add button to show content on touchscreen
-                $('body').prepend($showContentButton);
-            }
-
             function autoHide(enable) {
-                if (enable) {
+                if (enable === true) {
                     isHidden = true;
                     $('body').on('mousemove', function(event){
                         if (isHidden) {
                             isHidden = false;
-                            $('.nav, .main').removeClass('transparent');
+                            $('.nav').removeClass('left');
                         }
                         clearTimeout(autoHideTimer);
                         autoHideTimer = setTimeout(function() {
                             isHidden = true;
-                            $('.nav, .main').addClass('transparent');
+                            $('.nav').addClass('left');
                         }, 1000);
                     });    
                 } else {
                     clearTimeout(autoHideTimer);
                     $('body').off('mousemove');
-                    $('.nav, .main').removeClass('transparent');
+                    $('.nav').removeClass('left');
+                }
+
+
+            }
+
+            function hideHome(enable){
+                if (enable === true) {
+                    $('.main').addClass('transparent');
+                } else {
+                    $('.main').removeClass('transparent');
                 }
             }
         });
+
+        
     </script>
 </body>
 </html>
