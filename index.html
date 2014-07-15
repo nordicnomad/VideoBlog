@@ -20,6 +20,18 @@
             <ul class="video-list">
                 <li><a id="returnHome" href="img/background.jpg" class="playlist-btn homeButton" title="Home"><img src="img/homeButton.png" alt="Home" /></a></li>
                 <li class="playLabel">Play List</li>
+                <li><a href="mov/fsport.mp4" class="btn playlist-btn">Countdown to our Big Launch!</a></li>
+                <li><a href="mov/honored.mp4" class="btn playlist-btn">Interview of Your Questions</a></li>
+                <li><a href="mov/tribute.mp4" class="btn playlist-btn">Best of This Month</a></li>
+                <li><a href="mov/fsport.mp4" class="btn playlist-btn">Thank You Fans!</a></li>
+                <li><a href="mov/honored.mp4" class="btn playlist-btn">New Milestone Reached</a></li>
+                <li><a href="mov/tribute.mp4" class="btn playlist-btn">Proper Pre-Run Routine</a></li>
+                <li><a href="mov/fsport.mp4" class="btn playlist-btn">Run Alone or in Groups?</a></li>
+                <li><a href="mov/honored.mp4" class="btn playlist-btn">Go for a Run</a></li>
+                <li><a href="mov/tribute.mp4" class="btn playlist-btn">Finish Line Experience</a></li>
+                <li><a href="mov/fsport.mp4" class="btn playlist-btn">Here We Go</a></li>
+                <li><a href="mov/honored.mp4" class="btn playlist-btn">Weekend Recap</a></li>
+                <li><a href="mov/tribute.mp4" class="btn playlist-btn">Running is Fun</a></li>
                 <li><a href="mov/fsport.mp4" class="btn playlist-btn">A Video About Running Good</a></li>
                 <li><a href="mov/honored.mp4" class="btn playlist-btn">Eat Like a Runner</a></li>
                 <li><a href="mov/tribute.mp4" class="btn playlist-btn">Welcome</a></li>
@@ -33,10 +45,16 @@
                 <p>Lorem Ipsum, our state of the art world class synergistic app makes running more social and promoting great events super easy and not in the least bit stressful. Our team of athletic programmers and industry specialists are working hard to deliver our new app to our dedicated partners and users. But while we're working on that we wanted to show you what we're about and what you can look forward to.</p>
                 <p>To that end you can check in with our team on a regular basis by signing up for email notifications or by visiting this site as we continue to chronical our journey in visually stunning and entertaining video blogs. Subscribers and viewers will be the first to know about and have the opportunity to sign up for our new service when it's available.</p>
                 <h3>Get Notified</h3>
-                <form>
-                    <input type="text" class="form-control" name="signupName" placeholder="Full Name" />
-                    <input type="text" class="form-control" name="signupEmail" placeholder="Email@Address.com" />
-                    <input type="submit" class="circle submitButton" value="Be The First To Know" />
+                <form class="clearfix">
+                    <div class="fluid-row">
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" name="signupName" placeholder="Full Name" />
+                            <input type="text" class="form-control" name="signupEmail" placeholder="Email@Address.com" />
+                        </div>
+                        <div class="col-lg-4">
+                            <input type="submit" class="circle submitButton" value="" />
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
@@ -46,7 +64,8 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery-ui.js"></script>
     <script src="js/jquery-ui.min.js"></script>
-    <script src="js/video.js"></script>
+    <!--<script src="js/video.js"></script>-->
+    <script src="http://vjs.zencdn.net/c/video.js"></script>
     <script src="js/EventEmitter.min.js"></script>
     <script src="js/eventie.js"></script>
     <script src="js/imagesloaded.js"></script>
@@ -138,8 +157,21 @@
                     $('.main').removeClass('transparent');
                 }
             }
+
+            function setHeight() {
+                var windowHeight = $(window).innerHeight(); 
+
+                $('.video-list, #overview').css('height', windowHeight);    
+            }
+
+            setHeight();
+        
+            window.onresize = function(event) {
+                setHeight();
+            };
         });
 
+        
         
     </script>
 </body>
