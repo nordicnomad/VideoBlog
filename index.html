@@ -15,6 +15,7 @@
 </head>
 <body>
     <div class="container">
+        <a href="#" class="menuButton closed" id="menuButton"></a>
         <div class="nav box closed">
                 
             <ul class="video-list">
@@ -38,8 +39,9 @@
             </ul>
         </div>
         <div class="main closed">
+
             <div id="overview" class="box">
-                <a href="" class="menuButton closed" id="menu">X</a>
+                
                 <img class="logo" src="img/logo.png" alt="InStryd" />
                 
                 <h2>Bringing Runners and Race Organizers Together for Hugs and Endorphines</h2>
@@ -97,21 +99,7 @@
 
             
 
-            // Turn off autohiding when mouse is over the nav 
-            // (not necessary for touchscreens)
-            if (isTouch) 
-            {
-            /*    $('.nav')
-                    .on('mouseover', function() {
-                        if (isShowingPlaylist) autoHide(false);
-                    })
-                    .on('mouseleave', function() {
-                        if (isShowingPlaylist) autoHide(true);
-                    });
-            } else {*/
-                // add button to show content on touchscreen
-                $('body').prepend($showContentButton);
-            }
+            
 
             // Playlist button click starts video, enables autohiding
             $('.playlist-btn').on('click', function(e) {
@@ -148,8 +136,6 @@
                     $('body').off('mousemove');
                     $('.nav').removeClass('left');
                 }
-
-
             }
 
             function hideHome(enable){
@@ -173,7 +159,9 @@
             };
         });
 
-        
+        $('#menuButton').click(function() {
+            $('#menuButton, .main, .nav').toggleClass('closed');
+        });
         
     </script>
 </body>

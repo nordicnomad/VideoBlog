@@ -121,7 +121,8 @@ pre {
 	max-width: 800px;
 	margin:auto;
 	margin-top:30px;
-	background:#000;
+	background-color: #000;
+	background-color:rgba(0,0,0,0.6);
 }
 
 form .form-control {
@@ -137,7 +138,7 @@ form .form-control {
 .circle {
 	border-radius: 50%;
 	border:4px solid #fff;
-	background-color: #d62e3a;
+	background-color: transparent;
 	width: 100px;
 	height: 100px;
 }
@@ -152,7 +153,7 @@ form .form-control {
 }
 
 .submitButton:hover {
-	background-color: transparent;
+	background-color: #d62e3a;
 
 	-webkit-transition-duration:0.6s;-moz-transition-duration:0.6s;-ms-transition-duration:0.6s;-o-transition-duration:0.6s;transition-duration:0.6s;
 }
@@ -170,7 +171,7 @@ input.submitButton {
 	position: absolute;
 	bottom: -50px;
 	left: 5px;
-	background:rgba(0,0,0,.8);
+	background:rgba(0,0,0,.6);
 	padding: 6px 12px;
 	border-radius: 10px;
 	color: #fff;
@@ -184,6 +185,7 @@ input.submitButton {
 }
 .playlist-btn { 
 	background:#000; 
+	background-color: rgba(0,0,0,0.6);
 	font-family: 'Open Sans', sans-serif;
 	text-decoration:none; 
 	font-style:normal;
@@ -193,6 +195,8 @@ input.submitButton {
 	padding:5px 10px; 
 	margin-right:10px;
 	border-radius:5px; 
+
+	-webkit-transition-duration:0.6s;-moz-transition-duration:0.6s;-ms-transition-duration:0.6s;-o-transition-duration:0.6s;transition-duration:0.6s;
 }
 .video-list {
 	list-style:none;
@@ -222,6 +226,8 @@ input.submitButton {
 }
 .playlist-btn.homeButton:hover {
 	background-color: #111;
+
+	-webkit-transition-duration:0.6s;-moz-transition-duration:0.6s;-ms-transition-duration:0.6s;-o-transition-duration:0.6s;transition-duration:0.6s;
 }
 .dimmed {opacity:.7;}
 .footer-text {
@@ -229,32 +235,45 @@ input.submitButton {
 	font-size:.9em;
 	font-style:italic;
 	opacity:.8;
-	text-shadow: 1px 1px 1px rgba(0,0,0,.8);
+	text-shadow: 1px 1px 1px rgba(0,0,0,.6);
 }
 
 #big-video-control-container {
-	z-index: 10000;
-	background-color: rgba(0,0,0,0.8);
+	z-index: 1000;
+	background-color: rgba(0,0,0,0.6);
 	padding-top: 5px;
 	padding-bottom: 5px;
 }
 
 .menuButton {
-	position: relative;
-	top:20px;
-	height: 20px;
-	width: 20px;
-	background-image: url('img/closed.png');
+	display: none;
+	position: fixed;
+	z-index: 1000;
+	top:15px;
+	height: 50px;
+	width: 50px;
+	border-radius: 2px;
+	background-color: rgba(0,0,0,0.6);
+	background-image: url('../img/close.png');
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: 90%;
+
+	-webkit-transition-duration:0.6s;-moz-transition-duration:0.6s;-ms-transition-duration:0.6s;-o-transition-duration:0.6s;transition-duration:0.6s;
 }
 
 .menuButton.closed {
-	background-image: url('img/menu.png');
+	background-image: url('../img/menu.png');
+}
+
+.menuButton:hover {
+	background-color: #111;
+
+	-webkit-transition-duration:0.6s;-moz-transition-duration:0.6s;-ms-transition-duration:0.6s;-o-transition-duration:0.6s;transition-duration:0.6s;
 }
 
 @media screen and (max-width: 1100px) {
+	
 	.main {
 		top:0;
 		left:350px;
@@ -266,11 +285,15 @@ input.submitButton {
 }
 
 @media screen and (max-width: 875px) {
-	.main {
-
+	.menuButton {
+		display: block;
+		left: 285px;
+		right: auto;
+		background-color: rgba(0,0,0,0.8);
 	}
-	.nav {
-
+	.menuButton.closed {
+		right: 6%;
+		left: auto;
 	}
 	.main.closed {
 		top:0;
@@ -285,18 +308,21 @@ input.submitButton {
 }
 
 @media screen and (max-width: 500px) {
-	.main {
-		
+	.menuButton {
+		left: 270px;
+		right: auto;
+		background-color: rgba(0,0,0,0.8);
+	}
+	.menuButton.closed {
+		right: 6%;
+		left: auto;
 	}
 	.nav {
-
+		width: 270px;
 	}
 	.main.closed {
 		left: 0;
 		width: 100%;
-	}
-	.nav.closed {
-		
 	}
 }
 
